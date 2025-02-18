@@ -89,7 +89,7 @@ class GuidedBackpropReLUModel:
 
         output = input_img.grad.cpu().data.numpy()
         output = output[0, :, :, :]
-        output = output.transpose((1, 2, 0))
+        output = np.moveaxis(output,0,-1)
 
         replace_all_layer_type_recursive(self.model,
                                          GuidedBackpropReLUasModule,
